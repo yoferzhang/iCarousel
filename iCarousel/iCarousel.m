@@ -139,7 +139,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
 
 - (void)setUp
 {
-    _decelerationRate = 0.95;
+    _decelerationRate = 0.45;
     _scrollEnabled = YES;
     _bounces = YES;
     _offsetMultiplier = 1.0;
@@ -277,7 +277,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
     _startOffset = scrollOffset;
     _endOffset = scrollOffset;
     
-    if (fabs(_scrollOffset - scrollOffset) > 0.0)
+    if (fabs(_scrollOffset - scrollOffset) > 0.00001f)
     {
         _scrollOffset = scrollOffset;
         [self depthSortViews];
