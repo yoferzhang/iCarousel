@@ -1773,6 +1773,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
             [self pushAnimationState:YES];
             [_delegate carouselDidEndScrollingAnimation:self];
             [self popAnimationState];
+            _dragged  = NO;
         }
     }
     else if (_decelerating)
@@ -2101,6 +2102,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
             case UIGestureRecognizerStateBegan:
             {
                 _dragging = YES;
+                _dragged  = YES;
                 _scrolling = NO;
                 _decelerating = NO;
                 _previousTranslation = _vertical? [panGesture translationInView:self].y: [panGesture translationInView:self].x;
