@@ -132,6 +132,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) NSArray *visibleItemViews;
 @property (nonatomic, readonly) CGFloat itemWidth;
 @property (nonatomic, strong, readonly) UIView *contentView;
+@property (nonatomic, assign) NSInteger previousItemIndex;
+
 @property (nonatomic, readonly) CGFloat toggle;
 @property (nonatomic, assign) CGFloat autoscroll;
 @property (nonatomic, assign) BOOL stopAtItemBoundary;
