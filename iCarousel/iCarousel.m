@@ -261,6 +261,11 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
     }
 }
 
+- (void)setScrolling:(BOOL)scrolling
+{
+    _scrolling = scrolling;
+}
+
 - (void)setVertical:(BOOL)vertical
 {
     if (_vertical != vertical)
@@ -272,7 +277,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
 
 - (void)setScrollOffset:(CGFloat)scrollOffset
 {
-    _scrolling = NO;
+    self.scrolling = NO;
     _decelerating = NO;
     _startOffset = scrollOffset;
     _endOffset = scrollOffset;
@@ -1444,7 +1449,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
     if (duration > 0.0)
     {
         _decelerating = NO;
-        _scrolling = YES;
+        self.scrolling = YES;
         _startTime = CACurrentMediaTime();
         _startOffset = _scrollOffset;
         _scrollDuration = duration;
@@ -1768,7 +1773,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
         [self didScroll];
         if (time >= 1.0)
         {
-            _scrolling = NO;
+            self.scrolling = NO;
             [self depthSortViews];
             [self pushAnimationState:YES];
             [_delegate carouselDidEndScrollingAnimation:self];
@@ -1997,7 +2002,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
     if (_scrollEnabled)
     {
         _dragging = NO;
-        _scrolling = NO;
+        self.scrolling = NO;
         _decelerating = NO;
     }
     
@@ -2103,7 +2108,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
             {
                 _dragging = YES;
                 _dragged  = YES;
-                _scrolling = NO;
+                self.scrolling = NO;
                 _decelerating = NO;
                 _previousTranslation = _vertical? [panGesture translationInView:self].y: [panGesture translationInView:self].x;
 
@@ -2222,7 +2227,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
             _dragging = YES;
             [_delegate carouselWillBeginDragging:self];
         }
-        _scrolling = NO;
+        self.scrolling = NO;
         _decelerating = NO;
         
         CGFloat translation = _vertical? [theEvent deltaY]: [theEvent deltaX];

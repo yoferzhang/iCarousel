@@ -145,6 +145,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, getter = isDecelerating) BOOL decelerating;
 @property (nonatomic, readonly, getter = isScrolling) BOOL scrolling;
 
+/// 暴露出来set方法是为了给子类重载，在scrolling为YES的时候可能有业务逻辑需要处理
+- (void)setScrolling:(BOOL)scrolling;
+
 - (void)scrollByOffset:(CGFloat)offset duration:(NSTimeInterval)duration;
 - (void)scrollToOffset:(CGFloat)offset duration:(NSTimeInterval)duration;
 - (void)scrollByNumberOfItems:(NSInteger)itemCount duration:(NSTimeInterval)duration;
