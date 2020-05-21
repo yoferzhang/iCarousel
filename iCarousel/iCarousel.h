@@ -147,6 +147,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 暴露出来set方法是为了给子类重载，在scrolling为YES的时候可能有业务逻辑需要处理
 - (void)setScrolling:(BOOL)scrolling;
+- (void)setDragged:(BOOL)dragged;
 
 - (void)scrollByOffset:(CGFloat)offset duration:(NSTimeInterval)duration;
 - (void)scrollToOffset:(CGFloat)offset duration:(NSTimeInterval)duration;

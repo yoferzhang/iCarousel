@@ -116,6 +116,7 @@
 @property (nonatomic, assign) CGFloat endOffset;
 @property (nonatomic, assign) NSTimeInterval scrollDuration;
 @property (nonatomic, assign, getter = isScrolling) BOOL scrolling;
+@property (nonatomic, assign, getter = isDragged) BOOL dragged;//是否手动滑动
 @property (nonatomic, assign) NSTimeInterval startTime;
 @property (nonatomic, assign) NSTimeInterval lastTime;
 @property (nonatomic, assign) CGFloat startVelocity;
@@ -264,6 +265,11 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
 - (void)setScrolling:(BOOL)scrolling
 {
     _scrolling = scrolling;
+}
+
+- (void)setDragged:(BOOL)dragged
+{
+    _dragged = dragged;
 }
 
 - (void)setVertical:(BOOL)vertical
@@ -1778,7 +1784,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
             [self pushAnimationState:YES];
             [_delegate carouselDidEndScrollingAnimation:self];
             [self popAnimationState];
-            _dragged  = NO;
+            self.dragged = NO;
         }
     }
     else if (_decelerating)
@@ -2107,7 +2113,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
             case UIGestureRecognizerStateBegan:
             {
                 _dragging = YES;
-                _dragged  = YES;
+                self.dragged = YES;
                 self.scrolling = NO;
                 _decelerating = NO;
                 _previousTranslation = _vertical? [panGesture translationInView:self].y: [panGesture translationInView:self].x;
